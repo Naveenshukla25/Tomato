@@ -1,4 +1,3 @@
-import React from "react";
 import userModal from "../modal/userModal.js";
 
 export const addToCart = async (req, res) => {
@@ -39,3 +38,4 @@ export const getCart = async (req, res) => {
     res.json({ success: false, message: "error in getting cart " });
   }
 };
+
