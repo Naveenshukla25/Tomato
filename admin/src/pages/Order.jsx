@@ -7,7 +7,7 @@ const Order = () => {
   const[orders,setOrder] = useState([]);
 
   const fetchAllOrder = async () => {
-    const res = await axios.get('http://localhost:4000/api/order/userorder');
+    const res = await axios.get('https://tomato-server-055e.onrender.com/api/order/userorder');
     if(res.data.success){
       setOrder(res.data.data);
       console.log(res.data.data);
@@ -55,3 +55,4 @@ const Order = () => {
 }
 
 export default Order
+
