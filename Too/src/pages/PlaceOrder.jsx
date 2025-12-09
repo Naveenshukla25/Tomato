@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios  from 'axios';
 
 const PlaceOrder = () => {
-  const { getAmount, food_list, cartItem ,token } = useContext(StoreContext);
+  const { getAmount, food_list, cartItem ,token,url } = useContext(StoreContext);
   const [data,setData]=  useState({
     firstName: "",
     lastName: "",
@@ -32,7 +32,7 @@ const PlaceOrder = () => {
       items: orderItem,
       amount: getAmount()+2,
     }
-    let res = await axios.post("http://localhost:4000/api/order/place", orderData , { headers: { token }})
+    let res = await axios.post( url+"/api/order/place", orderData , { headers: { token }})
     if(res.data.success){
       alert(res.data.message);
     }
@@ -95,3 +95,4 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
+
