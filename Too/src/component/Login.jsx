@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { assets } from '../frontend_assets/assets'
 import axios from 'axios'
 import { useContext } from 'react'
-import { StoreContext } from '../context/StoreContext'
+import { StoreContext } from '../Context/StoreContext'
 
 const Login = ({ setShowLogin }) => {
     const { token , setToken,url } = useContext(StoreContext);
@@ -67,4 +67,5 @@ return (
 }
 
 export default Login
+
 
