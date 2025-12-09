@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react'
 import { assets } from '../frontend_assets/assets'
-import { StoreContext } from '../context/StoreContext';
+import { StoreContext } from '../Context/StoreContext';
 
 const FoodItem = ({id,name,description,price,image}) => {
     const {cartItem ,addToCart,removeFromCart } = useContext(StoreContext);
@@ -29,3 +29,4 @@ const FoodItem = ({id,name,description,price,image}) => {
 }
 
 export default FoodItem
+
