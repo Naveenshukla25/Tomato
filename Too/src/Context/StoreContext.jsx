@@ -3,6 +3,7 @@ export const StoreContext = createContext(null);
 import axios from 'axios';
 
 const StoreContextProvider = (props) => {
+  const url = "https://tomato-server-055e.onrender.com"
   const [cartItem,setCartItem] = useState({});
   const [token, setToken] = useState('');
   const [food_list, setFoodList] = useState([]);
@@ -16,14 +17,14 @@ const StoreContextProvider = (props) => {
       }
       setToken(localStorage.getItem('token'));
       if (token) {
-        await axios.post('http://localhost:4000/api/cart/add', {itemId}, { headers: {token} });
+        await axios.post( url + '/api/cart/add', {itemId}, { headers: {token} });
       }
   }
   const removeFromCart = async(itemId)=>{
       setCartItem((prev)=> ({...prev, [itemId]:prev[itemId]-1 }))
 
       if(token){
-          await axios.post('http://localhost:4000/api/cart/remove', {itemId}, { headers: {token} });
+          await axios.post( url +'/api/cart/remove', {itemId}, { headers: {token} });
       }
   }
   
@@ -39,7 +40,7 @@ const StoreContextProvider = (props) => {
   }
 
   const fetchfood = async () => {
-    const res = await axios.get('http://localhost:4000/api/food/list')
+    const res = await axios.get( url+'/api/food/list')
     setFoodList(res.data.data);
   }
   
@@ -56,7 +57,8 @@ const StoreContextProvider = (props) => {
       removeFromCart,
       getAmount,
       setToken,
-      token
+      token,
+      url
   } 
   
 
@@ -66,5 +68,6 @@ const StoreContextProvider = (props) => {
     </StoreContext.Provider>
   )
 }
+
 
 export default StoreContextProvider
