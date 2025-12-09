@@ -23,22 +23,23 @@ const Order = () => {
       <p className='text-2xl ml-40 '> Order Page </p>
       <div>
         {orders.map((order, index)=>{
-            return (<div  className='p-2 flex justify-between gap-4 border-2  border-gray-200 bg-amber-500 '  key={index}> 
+            return (<div  className='p-4 min-w-auto flex justify-between gap-4 border-2  border-gray-200 '  key={index}> 
               <img className='w-20 h-20' src={assests.parcel_icon} alt="" />
-              <div>
+              <div className='flex justify-between items-center gap-8 w-full'>
                 <p>
                   {order.items?.map((item, itemIndex)=>{
                       return(
-                        <div key={itemIndex} >
-                          {"Dish Name ="+item.name + " Quantity = "+ item.quantity}
+                        <div className='font-semibold' key={itemIndex} >
+                          {item.name + " x "+ item.quantity}
                         </ div>
                       )
                   })}
-                </p>
-                <p>{ "Name =  " +order.address.firstName+order.address.lastName }</p>               
-                <div>
-                  <p>{ "order amount = " +order.amount}</p>
-                  <p>{ "order Adress = " +order.address.street+" , "+ order.address.city + " , "+ order.address.state + " , "+ order.address.zip}</p>
+                </p>             
+                <div className='flex flex-col space-y-1 ml-3'>
+                  <p>{order.address.firstName+" "+order.address.lastName }</p>
+                  <p className='font-bold'>{ "Amount = $" +order.amount}</p>
+                  <p className='flex '>
+                    { "Address = " +order.address.street+" , "+ order.address.city + " , "+ order.address.state + " , "+ order.address.zip}</p>
                 </div>
                 <p> Item : { order.items.length }</p>
                 <select >
@@ -55,4 +56,3 @@ const Order = () => {
 }
 
 export default Order
-
