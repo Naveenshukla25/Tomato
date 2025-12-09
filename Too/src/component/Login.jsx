@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { StoreContext } from '../context/StoreContext'
 
 const Login = ({ setShowLogin }) => {
-    const { token , setToken } = useContext(StoreContext);
+    const { token , setToken,url } = useContext(StoreContext);
     const [currState,setCurrState] = useState("Login");
     const [data,setData] = useState({
         name:"",
@@ -23,9 +23,9 @@ const Login = ({ setShowLogin }) => {
         event.preventDefault();
         let newUrl;
         if (currState === "Login") {
-            newUrl = "http://localhost:4000/api/user/login"
+            newUrl = url+"/api/user/login"
         } else {
-            newUrl = "http://localhost:4000/api/user/register"
+            newUrl = url+"/api/user/register"
         }
         const res = await axios.post(newUrl, data);
         if (res.data.success) {
@@ -67,3 +67,4 @@ return (
 }
 
 export default Login
+
