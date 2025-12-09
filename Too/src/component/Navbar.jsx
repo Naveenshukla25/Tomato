@@ -2,7 +2,7 @@ import React from 'react'
 import { assets } from '../frontend_assets/assets'
 import { Link} from 'react-router-dom';
 import { useContext } from 'react';
-import { StoreContext } from '../context/StoreContext';
+import { StoreContext } from '../Context/StoreContext';
 import  {useNavigate } from 'react-router-dom';
 
 
@@ -65,3 +65,4 @@ const Navbar = ({ setShowLogin }) => {
 }
 
 export default Navbar
+
