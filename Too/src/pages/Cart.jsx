@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import { food_list } from '../frontend_assets/assets'
-import { StoreContext } from '../context/StoreContext'
+import { StoreContext } from '../Context/StoreContext'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Cart = () => {
@@ -76,3 +76,4 @@ const Cart = () => {
 }
 
 export default Cart
+
