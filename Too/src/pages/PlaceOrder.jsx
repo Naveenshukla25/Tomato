@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StoreContext } from '../context/StoreContext'
+import { StoreContext } from '../Context/StoreContext'
 import { Link } from 'react-router-dom';
 import axios  from 'axios';
 
@@ -95,4 +95,5 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
+
 
