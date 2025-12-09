@@ -1,6 +1,6 @@
 import React, { useContext, useState ,useEffect} from 'react'
 import FoodItem from './FoodItem'
-import { StoreContext } from '../context/StoreContext';
+import { StoreContext } from '../Context/StoreContext';
 import axios from 'axios';
 
 const FoodDisplay = ({ category, setCategory }) => {
@@ -22,3 +22,4 @@ const FoodDisplay = ({ category, setCategory }) => {
 }
 
 export default FoodDisplay
+
