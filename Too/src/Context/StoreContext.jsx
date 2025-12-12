@@ -45,9 +45,15 @@ const StoreContextProvider = (props) => {
   }
   
   
-  useEffect(() => {
-    fetchfood();
-  },[] ); 
+   useEffect(() => {
+    async function loadData(){
+        await fetchfood();
+        if(localStorage.getItem("token")){
+          setToken(localStorage.getItem("token"));
+        }
+    }
+    loadData();
+  }, []); 
 
   const contextValue = {
       food_list,
@@ -71,3 +77,4 @@ const StoreContextProvider = (props) => {
 
 
 export default StoreContextProvider
+
