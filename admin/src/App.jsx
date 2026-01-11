@@ -17,14 +17,16 @@ function App() {
     <>
       <ToastContainer/>
       <Navbar/>
-      <hr className='b-1 border-gray-200' />
-      <div className='flex '>
+      <hr className='border-gray-200' />
+      <div className='flex flex-col md:flex-row'>
         <Slidebar/>
-        <Routes>
-          <Route path='/add' element={<Add/>}/>
-          <Route path='/list' element={<List/>}/>
-          <Route path='/order' element={<Order/>}/>
-        </Routes>
+        <div className='flex-1 min-w-0'>
+          <Routes>
+            <Route path='/add' element={<Add/>}/>
+            <Route path='/list' element={<List/>}/>
+            <Route path='/order' element={<Order/>}/>
+          </Routes>
+        </div>
       </div>      
     </>
   )
