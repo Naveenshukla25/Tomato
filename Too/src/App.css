@@ -2,5 +2,28 @@
 @import "tailwindcss";
 *{
     font-family: 'Outfit', sans-serif;
-    align-items: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better button focus states */
+button:focus,
+a:focus {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button, a {
+    transition: all 0.2s ease-in-out;
 }

@@ -40,27 +40,72 @@ const Login = ({ setShowLogin }) => {
         console.log(data)
     },[data])
 return (
-    <div className='absolute z-1 h-screen w-screen bg-gray-500 opacity-95 flex justify-center  '>
-        <form  onSubmit={ onLogin } className=' bg-white p-4 flex flex-col gap-4 border-2 border-gray-500 rounded-2xl shadow-lg'>
-            <div className='flex gap-35 items-center'>
-                <h2 className='text-xl font-semibold'>{ currState }</h2>
-                <img onClick={()=>{ setShowLogin(false) } } src={assets.cross_icon} alt='' />
+    <div className='fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4'>
+        <form onSubmit={onLogin} className='bg-white p-6 md:p-8 flex flex-col gap-6 rounded-2xl shadow-2xl w-full max-w-md relative animate-fade-in'>
+            <div className='flex justify-between items-center'>
+                <h2 className='text-2xl md:text-3xl font-bold text-gray-800'>{currState}</h2>
+                <button 
+                    type='button'
+                    onClick={()=>{ setShowLogin(false) }} 
+                    className='p-2 hover:bg-gray-100 rounded-full transition-colors'
+                    aria-label='Close'
+                >
+                    <img src={assets.cross_icon} alt='Close' className='w-5 h-5' />
+                </button>
             </div>
-            <div className='flex flex-col gap-4  '>
-                { currState=== "Login" ?<> </>:<input onChange= { onChangeHandler } value={data.name} name='name' className='p-1 border-2 border-gray-200' type='text' placeholder='your-name' required /> }
-                <input onChange={onChangeHandler} value={data.email} name='email' className='p-1 border-2 border-gray-200 ' type='email' placeholder='Email' required />
-                <input onChange={onChangeHandler} value={data.password} name='password' className='p-1 border-2 border-gray-200 ' type='password' placeholder='password' required />
+            <div className='flex flex-col gap-4'>
+                { currState=== "Login" ? null : (
+                    <div>
+                        <label className='block text-sm font-semibold text-gray-700 mb-2'>Your Name</label>
+                        <input 
+                            onChange={onChangeHandler} 
+                            value={data.name} 
+                            name='name' 
+                            className='w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all' 
+                            type='text' 
+                            placeholder='Enter your name' 
+                            required 
+                        />
+                    </div>
+                )}
+                <div>
+                    <label className='block text-sm font-semibold text-gray-700 mb-2'>Email</label>
+                    <input 
+                        onChange={onChangeHandler} 
+                        value={data.email} 
+                        name='email' 
+                        className='w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all' 
+                        type='email' 
+                        placeholder='Enter your email' 
+                        required 
+                    />
+                </div>
+                <div>
+                    <label className='block text-sm font-semibold text-gray-700 mb-2'>Password</label>
+                    <input 
+                        onChange={onChangeHandler} 
+                        value={data.password} 
+                        name='password' 
+                        className='w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all' 
+                        type='password' 
+                        placeholder='Enter your password' 
+                        required 
+                    />
+                </div>
             </div>
-            <button className='bg-orange-500 text-white px-25 py-2 rounded-sm cursor-pointer '> 
-                { currState === "SignUp"?"Create-Account":"Login" } 
+            <button type='submit' className='bg-orange-500 text-white px-6 py-3 rounded-lg cursor-pointer font-semibold hover:bg-orange-600 transition-colors shadow-md'> 
+                { currState === "SignUp" ? "Create Account" : "Login" } 
             </button>
-            <div className='flex justify-center items-center '>
-                <input type='checkbox' required />
-                <p className='text-gray-500' >By continuing,I agree term and conditions</p>
+            <div className='flex items-start gap-2'>
+                <input type='checkbox' required className='mt-1' />
+                <p className='text-sm text-gray-600'>By continuing, I agree to the terms and conditions</p>
             </div>
-            { currState === "Login" 
-            ?<p className='text-gray-500'> Create New Account ? <span onClick={ ()=>{setCurrState("SignUp")} } className='text-orange-500 cursor-pointer' > Click Here</span> </p>
-            :<p className='text-gray-500' > Already have Account <span onClick={ ()=>{setCurrState("Login")} }  className='text-orange-500 cursor-pointer'> Login Here</span> </p>}
+            <div className='text-center'>
+                { currState === "Login" 
+                ? <p className='text-gray-600 text-sm'>Don't have an account? <span onClick={()=>{setCurrState("SignUp")}} className='text-orange-500 cursor-pointer font-semibold hover:text-orange-600 transition-colors'> Sign Up Here</span> </p>
+                : <p className='text-gray-600 text-sm'>Already have an account? <span onClick={()=>{setCurrState("Login")}} className='text-orange-500 cursor-pointer font-semibold hover:text-orange-600 transition-colors'> Login Here</span> </p>
+                }
+            </div>
         </form>
     </div>
   )

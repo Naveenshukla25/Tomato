@@ -45,51 +45,143 @@ const PlaceOrder = () => {
   },[data])
 
   return ( 
-    <div className=''>
-      <form   className='ml-30 mr-25 space-y-1'>
-        <h2 className='font-semibold text-2xl '> Delivery Information </h2>
-        <div className=''>
-          <input name='firstName' onChange={ onChangeHandler} value={data.firstName} className='p-1 border-2 border-gray-200 ' type='text' placeholder='First-name' />
-          <input name='lastName' onChange={ onChangeHandler} value={data.lastName} className='p-1 border-2 border-gray-200 ' type='text' placeholder='Last-name' />
-        </div>
-        <div>
-          <input name='email' onChange={onChangeHandler} value={data.email} className='p-1 border-2 border-gray-200 ' type='text' placeholder='Email' />
-          <input name='street' onChange={onChangeHandler} value={data.street} className='p-1 border-2 border-gray-200 ' type='text' placeholder='Street' />
-        </div>
-        <div>
-          <input name='city' onChange={onChangeHandler} value={data.city} className='p-1 border-2 border-gray-200 ' type='text' placeholder='City' />
-          <input name='state' onChange={onChangeHandler} value={data.state} className='p-1 border-2 border-gray-200 ' type='text' placeholder='State' />
-        </div>
-        <div>
-          <input name='zip' onChange={onChangeHandler} value={data.zip} className='p-1 border-2 border-gray-200 ' type='text' placeholder='Zip-code' />
-          <input name='country' onChange={onChangeHandler} value={data.country} className='p-1 border-2 border-gray-200 ' type='text' placeholder='Country' />
-        </div>
-        <div className='flex justify-between items-center mt-3' >
-                    <div className='w-full space-y-2 items-center'>
-                      <h2 className='font-semibold text-2xl'> Cart Total</h2>
-                      <div className='flex justify-between items-center  text-gray-500 mb-0 '> 
-                        <p>Sub Total</p>
-                        <p> ${ getAmount()  } </p>
-                      </div>
-                      <hr className=' border-gray-200 ' />
-                      <div className='flex justify-between items-center text-gray-500 mb-0 '> 
-                        <p >Delivery Fees</p>
-                        <p > $ 2 </p>
-                      </div>
-                      <hr className=' my-1 border-gray-200 ' />
-                      <div className='flex justify-between items-center text-gray-900 font-semibold mb-0 '> 
-                        <p>Grand Total</p>
-                        <p> ${ getAmount() + 2} </p>
-                      </div>
-                      <br/>
-                      <Link to='/order'>
-                      <button onClick={orderPlace} className='px-6 py-2 bg-orange-500 text-white rounded-sm cursor-pointer '> 
-                        PROCEED TO PAYMENT 
-                      </button>
-                      </Link>
-                    </div>
-        </div>
-      </form>
+    <div className='min-h-screen bg-gray-50'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
+        <form className='space-y-8' onSubmit={(e) => { e.preventDefault(); orderPlace(e); }}>
+          <h2 className='font-bold text-2xl md:text-3xl text-gray-800 mb-6'>Delivery Information</h2>
+          
+          <div className='bg-white rounded-lg shadow-sm p-6 md:p-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>First Name *</label>
+                <input 
+                  name='firstName' 
+                  onChange={onChangeHandler} 
+                  value={data.firstName} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='First name' 
+                  required
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>Last Name *</label>
+                <input 
+                  name='lastName' 
+                  onChange={onChangeHandler} 
+                  value={data.lastName} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='Last name' 
+                  required
+                />
+              </div>
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>Email *</label>
+                <input 
+                  name='email' 
+                  onChange={onChangeHandler} 
+                  value={data.email} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='email' 
+                  placeholder='Email address' 
+                  required
+                />
+              </div>
+              <div className='md:col-span-2'>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>Street Address *</label>
+                <input 
+                  name='street' 
+                  onChange={onChangeHandler} 
+                  value={data.street} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='Street address' 
+                  required
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>City *</label>
+                <input 
+                  name='city' 
+                  onChange={onChangeHandler} 
+                  value={data.city} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='City' 
+                  required
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>State *</label>
+                <input 
+                  name='state' 
+                  onChange={onChangeHandler} 
+                  value={data.state} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='State' 
+                  required
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>Zip Code *</label>
+                <input 
+                  name='zip' 
+                  onChange={onChangeHandler} 
+                  value={data.zip} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='Zip code' 
+                  required
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-semibold text-gray-700 mb-2'>Country</label>
+                <input 
+                  name='country' 
+                  onChange={onChangeHandler} 
+                  value={data.country || ''} 
+                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all' 
+                  type='text' 
+                  placeholder='Country' 
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8'>
+            <div className='lg:col-span-2'></div>
+            <div className='lg:col-span-1'>
+              <div className='bg-white rounded-lg shadow-sm p-6 sticky top-24'>
+                <h2 className='font-bold text-2xl mb-6 text-gray-800'>Order Summary</h2>
+                <div className='space-y-4 mb-6'>
+                  <div className='flex justify-between text-gray-600'>
+                    <p>Subtotal</p>
+                    <p className='font-semibold'>${getAmount().toFixed(2)}</p>
+                  </div>
+                  <hr className='border-gray-200' />
+                  <div className='flex justify-between text-gray-600'>
+                    <p>Delivery Fee</p>
+                    <p className='font-semibold'>$2.00</p>
+                  </div>
+                  <hr className='border-gray-200' />
+                  <div className='flex justify-between text-lg font-bold text-gray-800'>
+                    <p>Grand Total</p>
+                    <p className='text-orange-500'>${(getAmount() + 2).toFixed(2)}</p>
+                  </div>
+                </div>
+                <button 
+                  type='submit'
+                  className='w-full px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-semibold shadow-md'
+                > 
+                  PROCEED TO PAYMENT
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
