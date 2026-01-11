@@ -1,13 +1,13 @@
 import React ,{ useEffect, useState} from 'react'
 import { toast } from 'react-toastify';
 import axios from "axios";
-import assests from "../assets/assets.js"
+import assets from "../assets/assets.js"
 
 const Order = () => {
   const[orders,setOrder] = useState([]);
 
   const fetchAllOrder = async () => {
-    const res = await axios.get('https://tomato-server-055e.onrender.com/api/order/userorder');
+    const res = await axios.get( assets.url +'/api/order/userorder');
     if(res.data.success){
       setOrder(res.data.data);
       console.log(res.data.data);
@@ -24,7 +24,7 @@ const Order = () => {
       <div>
         {orders.map((order, index)=>{
             return (<div  className='p-4 min-w-auto flex justify-between gap-4 border-2  border-gray-200 '  key={index}> 
-              <img className='w-20 h-20' src={assests.parcel_icon} alt="" />
+              <img className='w-20 h-20' src={assets.parcel_icon} alt="" />
               <div className='flex justify-between items-center gap-8 w-full'>
                 <p>
                   {order.items?.map((item, itemIndex)=>{

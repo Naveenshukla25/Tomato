@@ -1,6 +1,7 @@
 import foodModal from "../modal/foodModal.js";
 import fs from "fs";
 
+//add food
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
 

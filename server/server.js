@@ -13,13 +13,13 @@ const PORT = 4000;
 
 //middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //db connection
 connectDB();
 //api endpoint
 app.use("/api/food", foodRouter);
-app.use("/image", express.static("upload"));
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);

@@ -5,17 +5,36 @@ import { toast } from 'react-toastify';
 
 const Add = () => {
     const [image,setImage] = useState(false);
+    const [imgurl,setImgurl] = useState("");
     const [data,setData] = useState({
         name:"",
         description:"",
         price:"",
         category:""
     })
+
+    const handleupload = async(event)=>{
+    const file = event.target.files[0];
+    if(!file) return;
+    const imgdata =  new FormData();
+    imgdata.append('file',file);
+    imgdata.append('upload_preset','first_upload');
+    imgdata.append('cloud_name','deq1dvpgp');
+    const res = await fetch('https://api.cloudinary.com/v1_1/deq1dvpgp/image/upload',{
+        method:'POST',
+        body:imgdata
+    })
+    const result = await res.json();
+    setImgurl(result.url);
+    console.log(result.url);
+    }
+
     const onChangeHandler = (event) =>{
         const name = event.target.name;
         const value = event.target.value;
         setData((data) => ({...data,[name]:value }))
     }
+
     const submitHandler = async(event) =>{
         event.preventDefault();
         const formData = new FormData();
@@ -23,8 +42,8 @@ const Add = () => {
         formData.append('description',data.description);
         formData.append('price',Number(data.price));
         formData.append('category',data.category);
-        formData.append('image',image);
-        const response = await axios.post('https://tomato-server-055e.onrender.com/api/food/add',formData);
+        formData.append('image',imgurl);
+        const response = await axios.post(assets.url+'/api/food/add',formData);
         if(response.data.success){
             setData({
                 name:"",
@@ -46,7 +65,7 @@ const Add = () => {
                 <label>
                     <img className='w-20 h-20' src={image?URL.createObjectURL(image):assets.upload_area} alt="" />
                 </label>
-                <input onChange={(e)=>setImage(e.target.files[0]) } type='file' />
+                <input onChange={ handleupload } type='file' />
             </div>
             <div>
                 <p> Product Name</p>
