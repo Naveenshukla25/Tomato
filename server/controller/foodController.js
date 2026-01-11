@@ -1,16 +1,13 @@
 import foodModal from "../modal/foodModal.js";
-import fs from "fs";
 
 //add food
 const addFood = async (req, res) => {
-  let image_filename = `${req.file.filename}`;
-
   const food = new foodModal({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
     category: req.body.category,
-    image: image_filename,
+    image: req.body.image,
   });
 
   try {
@@ -35,9 +32,7 @@ const listFood = async (req, res) => {
 
 const removeFood = async (req, res) => {
   try {
-    const food = await foodModal.findById(req.body.id);
-    fs.unlink(`upload/${food.image}`, () => {});
-
+    // No need to delete file since image is stored on Cloudinary
     await foodModal.findByIdAndDelete(req.body.id);
     res.json({ success: true, message: " food removed" });
   } catch (error) {

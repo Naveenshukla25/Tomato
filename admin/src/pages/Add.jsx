@@ -37,13 +37,14 @@ const Add = () => {
 
     const submitHandler = async(event) =>{
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('name',data.name);
-        formData.append('description',data.description);
-        formData.append('price',Number(data.price));
-        formData.append('category',data.category);
-        formData.append('image',imgurl);
-        const response = await axios.post(assets.url+'/api/food/add',formData);
+        const foodData = {
+            name: data.name,
+            description: data.description,
+            price: Number(data.price),
+            category: data.category,
+            image: imgurl
+        };
+        const response = await axios.post(assets.url+'/api/food/add', foodData);
         if(response.data.success){
             setData({
                 name:"",
@@ -52,6 +53,7 @@ const Add = () => {
                 category:""
             })
             setImage(false);
+            setImgurl("");
             toast.success("Food Item Added Successfully");
         }else{
             toast.error("Error");
