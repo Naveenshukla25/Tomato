@@ -5,7 +5,7 @@ import profile_image from "./profile_image.png";
 import upload_area from "./upload_area.png";
 import parcel_icon from "./parcel_icon.png";
 
-const url = "http://localhost:4000";
+const url = "https://tomato-server-055e.onrender.com";
 // deploy url = 'https://tomato-server-055e.onrender.com'
 
 const assets = {
