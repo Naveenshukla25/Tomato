@@ -9,7 +9,7 @@ const FoodItem = ({id,name,description,price,image}) => {
     <div className='bg-white shadow-md hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 flex flex-col h-full'>
       <div className='relative w-full aspect-square overflow-hidden'>
         <img 
-          src={url+"/image/"+image} 
+          src={image} 
           className='w-full h-full object-cover transition-transform duration-300 hover:scale-110' 
           alt={name}
         />
