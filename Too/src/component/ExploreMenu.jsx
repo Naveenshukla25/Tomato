@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { menu_list } from '../frontend_assets/assets';
 
 const ExploreMenu = ({category,setCategory}) => {
- 
+    
   return (
     <div className='p-4 md:p-6 lg:p-8' id='explore-menu'>
         <h2 className='text-gray-800 font-bold text-2xl sm:text-3xl md:text-4xl text-center mb-3'>Explore our Menu</h2>
