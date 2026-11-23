@@ -129,7 +129,7 @@ const Add = () => {
                             className='w-full px-4 py-3 sm:py-4 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200 text-gray-800 placeholder-gray-400 resize-none' 
                             cols='30' 
                             rows='5' 
-                            placeholder='Write a detailed description of the product...'
+                            placeholder='Write a detailed description of the Tyre...'
                             required
                         />
                     </div>
@@ -162,7 +162,7 @@ const Add = () => {
                                 Product Price <span className='text-red-500'>*</span>
                             </label>
                             <div className='relative'>
-                                <span className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold'>$</span>
+                                <span className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold'>₹</span>
                                 <input 
                                     onChange={onChangeHandler} 
                                     value={data.price} 
@@ -184,7 +184,7 @@ const Add = () => {
                             type='submit' 
                             className='w-full sm:w-auto px-8 sm:px-16 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-orange-300'
                         >
-                            Add Food Item
+                            Add Tyre
                         </button>
                     </div>
                 </form>
