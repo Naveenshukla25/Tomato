@@ -31,7 +31,7 @@ const List = () => {
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 lg:p-10'>
       <div className='max-w-7xl mx-auto'>
-        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-6 sm:mb-8'>Food Items List</h1>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-6 sm:mb-8'>Tyre List</h1>
         
         {list.length === 0 ? (
           <div className='bg-white rounded-xl shadow-md p-8 sm:p-12 text-center'>
