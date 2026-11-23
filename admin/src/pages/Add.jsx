@@ -63,7 +63,7 @@ const Add = () => {
     <div className='min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 lg:p-10'>
         <div className='max-w-4xl mx-auto'>
             <div className='bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12'>
-                <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-2 sm:mb-4'>Add New Food Item</h1>
+                <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-2 sm:mb-4'>Add New Tyre Item</h1>
                 <p className='text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base'>Fill in the details below to add a new item to your menu</p>
                 
                 <form className='space-y-6 sm:space-y-8' onSubmit={submitHandler}>
