@@ -36,13 +36,10 @@ I’m a JavaScript-focused developer who loves turning ideas into reliable, poli
 
 ## 🔎 Featured Projects
 - Tomato — a JavaScript-first repo for [Naveenshukla25/Tomato](https://github.com/Naveenshukla25/Tomato)  
-  Short blurb: A project focused on [describe core idea here — e.g., task management, UI component library, microservice demo].  
-  Tech: JavaScript, CSS, (add frameworks/libraries)
-
-- Project Two — short one-line description and link (replace with your favorite)
-- Project Three — short one-line description and link
-
-(Replace the above placeholders with real project descriptions and links to highlight what you're proud of.)
+  Short blurb: A project focused on [describe core idea here]
+  I have created this project on request for my client , Where I have build customer relationship management (CRM)
+  ADMIN SECTION : https://tomato-admin-w1u9.onrender.com
+  USER SECTION : https://tomato-frontend-bwar.onrender.com
 
 ---
 
