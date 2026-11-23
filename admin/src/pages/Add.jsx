@@ -149,14 +149,10 @@ const Add = () => {
                                 required
                             >
                                 <option value="" disabled>Select a category</option>
-                                <option value="Salad">Salad</option>
-                                <option value="Roll">Roll</option>
-                                <option value="Desert">Desert</option>
-                                <option value="Sandwich">Sandwich</option>
-                                <option value="cake">Cake</option>
-                                <option value="Pure-veg">Pure-veg</option>
-                                <option value="pasta">pasta</option>
-                                <option value="Noodle">Noodle</option>
+                                <option value="Truck">Truck</option>
+                                <option value="Bike">Bike</option>
+                                <option value="Car">Car</option>
+                                <option value="E-rickshaw">E-rickshaw</option>
                             </select>
                         </div>
 
