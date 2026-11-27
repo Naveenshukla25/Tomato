@@ -10,7 +10,8 @@ const Add = () => {
         name:"",
         description:"",
         price:"",
-        category:""
+        category:"",
+        inStock: true,
     })
 
     const handleupload = async(event)=>{
@@ -42,7 +43,8 @@ const Add = () => {
             description: data.description,
             price: Number(data.price),
             category: data.category,
-            image: imgurl
+            image: imgurl,
+            inStock: data.inStock !== undefined ? data.inStock : true,
         };
         const response = await axios.post(assets.url+'/api/food/add', foodData);
         if(response.data.success){
@@ -50,7 +52,8 @@ const Add = () => {
                 name:"",
                 description:"",
                 price:"",
-                category:""
+                category:"",
+                inStock: true,
             })
             setImage(false);
             setImgurl("");
@@ -175,6 +178,35 @@ const Add = () => {
                                     required
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Stock Status Selection */}
+                    <div className='space-y-2'>
+                        <label className='block text-lg sm:text-xl font-semibold text-gray-700'>
+                            Stock Availability
+                        </label>
+                        <div className='flex items-center gap-4 bg-gray-50 border-2 border-gray-200 rounded-lg p-3 sm:p-4'>
+                            <label className='flex items-center gap-2 cursor-pointer'>
+                                <input 
+                                    type='radio' 
+                                    name='inStock' 
+                                    checked={data.inStock === true} 
+                                    onChange={() => setData(prev => ({ ...prev, inStock: true }))}
+                                    className='w-5 h-5 text-orange-500 focus:ring-orange-500'
+                                />
+                                <span className='text-sm sm:text-base font-medium text-gray-700'>In Stock (Available for order)</span>
+                            </label>
+                            <label className='flex items-center gap-2 cursor-pointer ml-4'>
+                                <input 
+                                    type='radio' 
+                                    name='inStock' 
+                                    checked={data.inStock === false} 
+                                    onChange={() => setData(prev => ({ ...prev, inStock: false }))}
+                                    className='w-5 h-5 text-orange-500 focus:ring-orange-500'
+                                />
+                                <span className='text-sm sm:text-base font-medium text-gray-700'>Out of Stock</span>
+                            </label>
                         </div>
                     </div>
 

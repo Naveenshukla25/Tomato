@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Login from './component/Login';
 import PlaceOrder from './pages/PlaceOrder';
+import MyOrders from './pages/MyOrders';
 import Footer from './component/Footer';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/cart' element={<Cart/>} />
-            <Route path='/order' element={<PlaceOrder/>} />
+            <Route path='/order' element={<PlaceOrder setShowLogin={setShowLogin}/>} />
+            <Route path='/myorders' element={<MyOrders setShowLogin={setShowLogin}/>} />
           </Routes>
       </div>
       <Footer/>

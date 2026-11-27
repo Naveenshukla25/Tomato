@@ -6,6 +6,7 @@ const foodSchema = new mongoose.Schema({
   price: { type: String, required: true },
   image: { type: String, required: true },
   category: { type: String, required: true },
+  inStock: { type: Boolean, default: true },
 });
 
 const foodModal = mongoose.model("food", foodSchema);

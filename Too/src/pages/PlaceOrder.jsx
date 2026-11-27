@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from '../Context/StoreContext'
-import { Link } from 'react-router-dom';
-import axios  from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const PlaceOrder = () => {
-  const { getAmount, food_list, cartItem ,token,url } = useContext(StoreContext);
-  const [data,setData]=  useState({
+const PlaceOrder = ({ setShowLogin }) => {
+  const { getAmount, food_list, cartItem, token, url, setCartItem } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -13,36 +16,74 @@ const PlaceOrder = () => {
     city: "",
     state: "",
     zip: "",
+    country: "",
   });
+
+  useEffect(() => {
+    if (!token) {
+      alert("Please sign in to place an order.");
+      if (setShowLogin) {
+        setShowLogin(true);
+      }
+      navigate('/cart');
+    } else if (getAmount() === 0) {
+      navigate('/cart');
+    }
+  }, [token]);
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
+
   const orderPlace = async (event) => {
-    let orderItem = [];
-    food_list.map((item) => {
-      if(cartItem[item._id] > 0){
-        let iteminfo = item;
-        iteminfo["quantity"] = cartItem[item._id];
-        orderItem.push(iteminfo);
+    event.preventDefault();
+
+    // Check for out-of-stock items in cart
+    const outOfStockInCart = food_list.filter(
+      (item) => cartItem[item._id] > 0 && item.inStock === false
+    );
+    if (outOfStockInCart.length > 0) {
+      const names = outOfStockInCart.map((i) => i.name).join(", ");
+      alert(`The following item(s) are out of stock: ${names}. Please remove them from your cart to proceed.`);
+      navigate('/cart');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      let orderItem = [];
+      food_list.forEach((item) => {
+        if (cartItem[item._id] > 0) {
+          let iteminfo = { ...item, quantity: cartItem[item._id] };
+          orderItem.push(iteminfo);
+        }
+      });
+
+      let orderData = {
+        address: data,
+        items: orderItem,
+        amount: getAmount() + 2,
+      };
+
+      let res = await axios.post(url + "/api/order/place", orderData, {
+        headers: { token },
+      });
+
+      if (res.data.success) {
+        alert("Your order has been placed successfully!");
+        setCartItem({});
+        navigate('/myorders');
+      } else {
+        alert(res.data.message || "Failed to place order");
       }
-    })
-    let orderData = {
-      address: data,
-      items: orderItem,
-      amount: getAmount()+2,
+    } catch (err) {
+      console.error(err);
+      alert("Error placing order. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    let res = await axios.post( url+"/api/order/place", orderData , { headers: { token }})
-    if(res.data.success){
-      alert(res.data.message);
-    }
-    else{
-      alert(res.data.message);
-    }
-  }
-  useEffect(()=>{
-    console.log(data);
-  },[data])
+  };
 
   return ( 
     <div className='min-h-screen bg-gray-50'>
@@ -173,9 +214,14 @@ const PlaceOrder = () => {
                 </div>
                 <button 
                   type='submit'
-                  className='w-full px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-semibold shadow-md'
+                  disabled={loading}
+                  className={`w-full px-6 py-3 rounded-lg font-semibold shadow-md transition-colors cursor-pointer ${
+                    loading 
+                      ? 'bg-gray-400 text-white cursor-not-allowed'
+                      : 'bg-orange-500 hover:bg-orange-600 text-white'
+                  }`}
                 > 
-                  PROCEED TO PAYMENT
+                  {loading ? 'PLACING ORDER...' : 'PLACE ORDER'}
                 </button>
               </div>
             </div>

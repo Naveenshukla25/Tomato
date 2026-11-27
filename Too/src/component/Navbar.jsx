@@ -50,7 +50,7 @@ const Navbar = ({ setShowLogin }) => {
             : <div className="relative cursor-pointer group">
             <img src={assets.profile_icon} alt="" className='w-6 h-6' />
             <ul className="absolute right-0 z-10 hidden group-hover:flex flex-col gap-2 w-36 bg-white border-2 border-gray-200 rounded-xl p-3 shadow-lg">
-            <li className="flex items-center gap-2 hover:text-orange-500 transition-colors">
+            <li onClick={() => navigate('/myorders')} className="flex items-center gap-2 hover:text-orange-500 transition-colors cursor-pointer">
             <img src={assets.bag_icon} alt="" className='w-4 h-4' />
               <p className='text-sm'>Orders</p>
             </li>
@@ -99,7 +99,7 @@ const Navbar = ({ setShowLogin }) => {
               </button>
             ) : (
               <div className='space-y-2'>
-                <div className='py-2 px-4 text-gray-600 flex items-center gap-2'>
+                <div onClick={() => {navigate('/myorders'); setMobileMenuOpen(false);}} className='py-2 px-4 text-gray-600 flex items-center gap-2 cursor-pointer hover:bg-gray-100 rounded-lg'>
                   <img src={assets.bag_icon} alt="" className='w-5 h-5' />
                   <span>Orders</span>
                 </div>
